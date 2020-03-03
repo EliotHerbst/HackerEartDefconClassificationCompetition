@@ -27,9 +27,11 @@ dummy_y = np_utils.to_categorical(encoded_Y)
 def baseline_model():
     # create model
     model = Sequential()
-    model.add(Dense(10, input_dim=10))
+    model.add(Dense(8, input_dim=10))
     model.add(LeakyReLU(alpha=0.3))
     model.add(Dense(64))
+    model.add(LeakyReLU(alpha=0.3))
+    model.add(Dense(16))
     model.add(LeakyReLU(alpha=0.3))
     model.add(Dense(5, activation='softmax'))
     # Compile model
