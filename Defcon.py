@@ -2,7 +2,7 @@
 import pandas
 from pandas import read_csv
 from keras.models import Sequential
-from keras.layers import Dense
+from keras.layers import Dense, LeakyReLU
 from keras.wrappers.scikit_learn import KerasClassifier
 from keras.utils import np_utils
 from sklearn.model_selection import cross_val_score
@@ -27,7 +27,10 @@ dummy_y = np_utils.to_categorical(encoded_Y)
 def baseline_model():
     # create model
     model = Sequential()
-    model.add(Dense(10, input_dim=10, activation='relu'))
+    model.add(Dense(10, input_dim=10))
+    model.add(LeakyReLU(alpha=0.3))
+    model.add(Dense(64))
+    model.add(LeakyReLU(alpha=0.3))
     model.add(Dense(5, activation='softmax'))
     # Compile model
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
