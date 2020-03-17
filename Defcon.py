@@ -15,13 +15,6 @@ dataframe = pandas.read_csv("train.csv", header=None)
 dataset = dataframe.values
 X = dataset[:, 0:10].astype(float)
 Y = dataset[:, 10]
-# encode class values as integers
-encoder = LabelEncoder()
-encoder.fit(Y)
-encoded_Y = encoder.transform(Y)
-# convert integers to dummy variables (i.e. one hot encoded)
-dummy_y = np_utils.to_categorical(encoded_Y)
-
 
 # define baseline model
 def baseline_model():
